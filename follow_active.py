@@ -1,6 +1,7 @@
 from steem import Steem
 import time
 import re
+import all_followed_list
 s=Steem()
 
 following_=re.findall("'following': '(.+?)'",str(s.get_following('digital.mine','a','blog',1000)))
@@ -31,6 +32,17 @@ for i in al:
 	if '\n' in i:
 		i=i.replace('\n','')
 		active.append(i)
+###
+file=open('all_followed.txt','r')
+al_=file.readlines()
+file.close()
+for i in al_:
+	if '\n' in i:
+		i=i.replace('\n','')
+		if i not in following:
+			following.append(i)
+	
+###		
 			
 counter=0
 count=1
